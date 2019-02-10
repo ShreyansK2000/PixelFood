@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">PixelFoodApp</string>
+    <string name="open_camera__id">Open Camera</string>
+    <string name="upload_id">Upload</string>
+    <string name="nutrition_conent_id">Blah</string>
+    <string name="return_id">Return</string>
+    <string name="see_analysis_id">See Analysis</string>
+</resources>
