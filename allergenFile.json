@@ -1,0 +1,359 @@
+{
+    "vegetarian": false,
+    "vegan": false,
+    "glutenFree": false,
+    "dairyFree": true,
+    "veryHealthy": false,
+    "cheap": false,
+    "veryPopular": false,
+    "sustainable": false,
+    "weightWatcherSmartPoints": 7,
+    "gaps": "no",
+    "lowFodmap": false,
+    "ketogenic": false,
+    "whole30": false,
+    "preparationMinutes": 5,
+    "cookingMinutes": 15,
+    "sourceUrl": "https://www.simplywhisked.com/homemade-waffles-recipe/",
+    "spoonacularSourceUrl": "https://spoonacular.com/homemade-waffles-1072554",
+    "aggregateLikes": 1,
+    "spoonacularScore": 21.0,
+    "healthScore": 3.0,
+    "creditText": "Simply Whisked",
+    "sourceName": "Simply Whisked",
+    "pricePerServing": 27.26,
+    "extendedIngredients": [
+        {
+            "id": 20081,
+            "aisle": "Baking",
+            "image": "flour.png",
+            "consitency": "solid",
+            "name": "flour",
+            "original": "1 3/4 cup all-purpose flour",
+            "originalString": "1 3/4 cup all-purpose flour",
+            "originalName": "all-purpose flour",
+            "amount": 1.75,
+            "unit": "cup",
+            "meta": [
+                "all-purpose"
+            ],
+            "metaInformation": [
+                "all-purpose"
+            ],
+            "measures": {
+                "us": {
+                    "amount": 1.75,
+                    "unitShort": "cups",
+                    "unitLong": "cups"
+                },
+                "metric": {
+                    "amount": 414.029,
+                    "unitShort": "g",
+                    "unitLong": "grams"
+                }
+            }
+        },
+        {
+            "id": 18371,
+            "aisle": "Baking",
+            "image": "white-powder.jpg",
+            "consitency": "solid",
+            "name": "baking powder",
+            "original": "1 tablespoon baking powder",
+            "originalString": "1 tablespoon baking powder",
+            "originalName": "baking powder",
+            "amount": 1.0,
+            "unit": "tablespoon",
+            "meta": [],
+            "metaInformation": [],
+            "measures": {
+                "us": {
+                    "amount": 1.0,
+                    "unitShort": "Tbsp",
+                    "unitLong": "Tbsp"
+                },
+                "metric": {
+                    "amount": 1.0,
+                    "unitShort": "Tbsp",
+                    "unitLong": "Tbsp"
+                }
+            }
+        },
+        {
+            "id": 19335,
+            "aisle": "Baking",
+            "image": "sugar-in-bowl.png",
+            "consitency": "solid",
+            "name": "sugar",
+            "original": "2 tablespoon sugar",
+            "originalString": "2 tablespoon sugar",
+            "originalName": "sugar",
+            "amount": 2.0,
+            "unit": "tablespoon",
+            "meta": [],
+            "metaInformation": [],
+            "measures": {
+                "us": {
+                    "amount": 2.0,
+                    "unitShort": "Tbsps",
+                    "unitLong": "Tbsps"
+                },
+                "metric": {
+                    "amount": 2.0,
+                    "unitShort": "Tbsps",
+                    "unitLong": "Tbsps"
+                }
+            }
+        },
+        {
+            "id": 1002047,
+            "aisle": "Spices and Seasonings",
+            "image": "salt.jpg",
+            "consitency": "solid",
+            "name": "coarse salt",
+            "original": "1/4 teaspoon coarse salt",
+            "originalString": "1/4 teaspoon coarse salt",
+            "originalName": "coarse salt",
+            "amount": 0.25,
+            "unit": "teaspoon",
+            "meta": [],
+            "metaInformation": [],
+            "measures": {
+                "us": {
+                    "amount": 0.25,
+                    "unitShort": "tsps",
+                    "unitLong": "teaspoons"
+                },
+                "metric": {
+                    "amount": 0.25,
+                    "unitShort": "tsps",
+                    "unitLong": "teaspoons"
+                }
+            }
+        },
+        {
+            "id": 93607,
+            "aisle": "Milk, Eggs, Other Dairy",
+            "image": "almond-milk.png",
+            "consitency": "liquid",
+            "name": "almond milk",
+            "original": "1 1/2 cups almond milk",
+            "originalString": "1 1/2 cups almond milk",
+            "originalName": "almond milk",
+            "amount": 1.5,
+            "unit": "cups",
+            "meta": [],
+            "metaInformation": [],
+            "measures": {
+                "us": {
+                    "amount": 1.5,
+                    "unitShort": "cups",
+                    "unitLong": "cups"
+                },
+                "metric": {
+                    "amount": 354.882,
+                    "unitShort": "g",
+                    "unitLong": "grams"
+                }
+            }
+        },
+        {
+            "id": 4582,
+            "aisle": "Oil, Vinegar, Salad Dressing",
+            "image": "vegetable-oil.jpg",
+            "consitency": "liquid",
+            "name": "canola oil",
+            "original": "6 tablespoons canola oil",
+            "originalString": "6 tablespoons canola oil",
+            "originalName": "canola oil",
+            "amount": 6.0,
+            "unit": "tablespoons",
+            "meta": [],
+            "metaInformation": [],
+            "measures": {
+                "us": {
+                    "amount": 6.0,
+                    "unitShort": "Tbsps",
+                    "unitLong": "Tbsps"
+                },
+                "metric": {
+                    "amount": 6.0,
+                    "unitShort": "Tbsps",
+                    "unitLong": "Tbsps"
+                }
+            }
+        },
+        {
+            "id": 1123,
+            "aisle": "Milk, Eggs, Other Dairy",
+            "image": "egg.png",
+            "consitency": "solid",
+            "name": "eggs",
+            "original": "2 eggs",
+            "originalString": "2 eggs",
+            "originalName": "eggs",
+            "amount": 2.0,
+            "unit": "",
+            "meta": [],
+            "metaInformation": [],
+            "measures": {
+                "us": {
+                    "amount": 2.0,
+                    "unitShort": "",
+                    "unitLong": ""
+                },
+                "metric": {
+                    "amount": 2.0,
+                    "unitShort": "",
+                    "unitLong": ""
+                }
+            }
+        },
+        {
+            "id": 2050,
+            "aisle": "Baking",
+            "image": "vanilla.jpg",
+            "consitency": "solid",
+            "name": "vanilla extract",
+            "original": "1 teaspoon vanilla extract",
+            "originalString": "1 teaspoon vanilla extract",
+            "originalName": "vanilla extract",
+            "amount": 1.0,
+            "unit": "teaspoon",
+            "meta": [],
+            "metaInformation": [],
+            "measures": {
+                "us": {
+                    "amount": 1.0,
+                    "unitShort": "tsp",
+                    "unitLong": "teaspoon"
+                },
+                "metric": {
+                    "amount": 1.0,
+                    "unitShort": "tsp",
+                    "unitLong": "teaspoon"
+                }
+            }
+        }
+    ],
+    "id": 1072554,
+    "title": "Homemade Waffles",
+    "readyInMinutes": 20,
+    "servings": 8,
+    "image": "https://spoonacular.com/recipeImages/1072554-556x370.jpg",
+    "imageType": "jpg",
+    "cuisines": [],
+    "dishTypes": [
+        "morning meal",
+        "brunch",
+        "breakfast"
+    ],
+    "diets": [
+        "dairy free"
+    ],
+    "occasions": [],
+    "winePairing": {
+        "pairedWines": [],
+        "pairingText": "",
+        "productMatches": []
+    },
+    "instructions": "Instructions\n\nPreheat waffle oven.\n\nIn a large bowl, whisk together the flour, baking powder, sugar and coarse salt.\n\nAdd milk, canola oil, eggs and vanilla extract  one ingredient at a time  whisking until smooth.\n\nPrepare waffles according to waffle maker directions, using about 1/2 cup of batter for each waffle.*",
+    "analyzedInstructions": [
+        {
+            "name": "",
+            "steps": [
+                {
+                    "number": 1,
+                    "step": "Preheat waffle oven.",
+                    "ingredients": [],
+                    "equipment": [
+                        {
+                            "id": 404784,
+                            "name": "oven",
+                            "image": "oven.jpg"
+                        }
+                    ]
+                },
+                {
+                    "number": 2,
+                    "step": "In a large bowl, whisk together the flour, baking powder, sugar and coarse salt.",
+                    "ingredients": [
+                        {
+                            "id": 18371,
+                            "name": "baking powder",
+                            "image": "white-powder.jpg"
+                        },
+                        {
+                            "id": 1002047,
+                            "name": "coarse salt",
+                            "image": "salt.jpg"
+                        },
+                        {
+                            "id": 20081,
+                            "name": "all purpose flour",
+                            "image": "flour.png"
+                        },
+                        {
+                            "id": 19335,
+                            "name": "sugar",
+                            "image": "sugar-in-bowl.png"
+                        }
+                    ],
+                    "equipment": [
+                        {
+                            "id": 404661,
+                            "name": "whisk",
+                            "image": "whisk.png"
+                        },
+                        {
+                            "id": 404783,
+                            "name": "bowl",
+                            "image": "bowl.jpg"
+                        }
+                    ]
+                },
+                {
+                    "number": 3,
+                    "step": "Add milk, canola oil, eggs and vanilla extract  one ingredient at a time  whisking until smooth.",
+                    "ingredients": [
+                        {
+                            "id": 2050,
+                            "name": "vanilla extract",
+                            "image": "vanilla-extract.jpg"
+                        },
+                        {
+                            "id": 4582,
+                            "name": "canola oil",
+                            "image": "vegetable-oil.jpg"
+                        },
+                        {
+                            "id": 1123,
+                            "name": "egg",
+                            "image": "egg.png"
+                        }
+                    ],
+                    "equipment": [
+                        {
+                            "id": 404661,
+                            "name": "whisk",
+                            "image": "whisk.png"
+                        }
+                    ]
+                },
+                {
+                    "number": 4,
+                    "step": "Prepare waffles according to waffle maker directions, using about 1/2 cup of batter for each waffle.*",
+                    "ingredients": [],
+                    "equipment": [
+                        {
+                            "id": 404753,
+                            "name": "waffle iron",
+                            "image": "belgian-waffle-iron.jpg"
+                        }
+                    ]
+                }
+            ]
+        }
+    ],
+    "creditsText": "Simply Whisked"
+}

@@ -1,0 +1,13 @@
+chicken wings: 757090
+cheesecake: 1072996
+donut: 1070926
+french fries: 789705
+fried rice: 665983
+pizza: 1068427
+pancakes: 1070116
+ice cream: 687403
+sushi: 1070111
+waffles: 1072554
+
+
+55564aab52msh6f13532902474b5p1fd958jsn58bfff5d2ece
