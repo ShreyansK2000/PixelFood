@@ -1,5 +1,4 @@
 package com.example.pixelfoodapp;
-package
 
 import android.Manifest;
 import android.content.Intent;
