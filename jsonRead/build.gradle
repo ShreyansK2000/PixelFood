@@ -1,0 +1,25 @@
+plugins {
+    id 'java'
+    id 'antlr'
+}
+
+group 'CPEN 221'
+version '1.0-SNAPSHOT'
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+    implementation 'com.google.code.gson:gson:2.8.5'
+    compile 'org.json:json:20171018'
+    compile 'com.googlecode.json-simple:json-simple:1.1.1'
+    antlr "org.antlr:antlr4:4.5"
+}
+
+generateGrammarSource{
+    outputDirectory = file("src\\main\\java\\ca\\ubc\\ece\\cpen221\\mp4\\dbANTLR")
+}
