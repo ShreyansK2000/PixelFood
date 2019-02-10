@@ -455,20 +455,20 @@
     </option>
     <option name="projectSyncType">
       <map>
-        <entry key="$USER_HOME$/Desktop/CPEN year 2/CPEN 221/exercise12-T4w51f" value="PREVIEW" />
-        <entry key="$USER_HOME$/Desktop/CPEN year 2/CPEN 221/exercise14-T4w51f" value="PREVIEW" />
-        <entry key="$USER_HOME$/Desktop/CPEN year 2/CPEN 221/exercise16-T4w51f" value="PREVIEW" />
-        <entry key="$USER_HOME$/Desktop/CPEN year 2/CPEN 221/exercise17-T4w51f" value="PREVIEW" />
-        <entry key="$USER_HOME$/Desktop/CPEN year 2/CPEN 221/exercise7-T4w51f" value="PREVIEW" />
-        <entry key="$USER_HOME$/Desktop/CPEN year 2/CPEN 221/lab11" value="PREVIEW" />
-        <entry key="$USER_HOME$/Desktop/CPEN year 2/CPEN 221/lab8" value="PREVIEW" />
-        <entry key="$USER_HOME$/Desktop/CPEN year 2/CPEN 221/mp2-TA" value="PREVIEW" />
-        <entry key="$USER_HOME$/Desktop/CPEN year 2/CPEN 221/mp3-Amr_Tawsif" value="PREVIEW" />
-        <entry key="$USER_HOME$/Desktop/CPEN year 2/CPEN 221/mp4-TeamTawm" value="PREVIEW" />
-        <entry key="$USER_HOME$/Desktop/CPEN year 2/CPEN 221/ppt3-T4w51f" value="PREVIEW" />
-        <entry key="$USER_HOME$/Desktop/CPEN year 2/CPEN 221/ppt3a-T4w51f" value="PREVIEW" />
-        <entry key="$USER_HOME$/Desktop/CPEN year 2/CPEN 221/practice2" value="PREVIEW" />
-        <entry key="$USER_HOME$/Desktop/CPEN year 2/CPEN 221/practice4" value="PREVIEW" />
+        <entry key="$PROJECT_DIR$/../../../CPEN year 2/CPEN 221/exercise12-T4w51f" value="PREVIEW" />
+        <entry key="$PROJECT_DIR$/../../../CPEN year 2/CPEN 221/exercise14-T4w51f" value="PREVIEW" />
+        <entry key="$PROJECT_DIR$/../../../CPEN year 2/CPEN 221/exercise16-T4w51f" value="PREVIEW" />
+        <entry key="$PROJECT_DIR$/../../../CPEN year 2/CPEN 221/exercise17-T4w51f" value="PREVIEW" />
+        <entry key="$PROJECT_DIR$/../../../CPEN year 2/CPEN 221/exercise7-T4w51f" value="PREVIEW" />
+        <entry key="$PROJECT_DIR$/../../../CPEN year 2/CPEN 221/lab11" value="PREVIEW" />
+        <entry key="$PROJECT_DIR$/../../../CPEN year 2/CPEN 221/lab8" value="PREVIEW" />
+        <entry key="$PROJECT_DIR$/../../../CPEN year 2/CPEN 221/mp2-TA" value="PREVIEW" />
+        <entry key="$PROJECT_DIR$/../../../CPEN year 2/CPEN 221/mp3-Amr_Tawsif" value="PREVIEW" />
+        <entry key="$PROJECT_DIR$/../../../CPEN year 2/CPEN 221/mp4-TeamTawm" value="PREVIEW" />
+        <entry key="$PROJECT_DIR$/../../../CPEN year 2/CPEN 221/ppt3-T4w51f" value="PREVIEW" />
+        <entry key="$PROJECT_DIR$/../../../CPEN year 2/CPEN 221/ppt3a-T4w51f" value="PREVIEW" />
+        <entry key="$PROJECT_DIR$/../../../CPEN year 2/CPEN 221/practice2" value="PREVIEW" />
+        <entry key="$PROJECT_DIR$/../../../CPEN year 2/CPEN 221/practice4" value="PREVIEW" />
         <entry key="$USER_HOME$/IdeaProjects/f18-mp1" value="PREVIEW" />
         <entry key="$USER_HOME$/IdeaProjects/lab1-T4w51f" value="PREVIEW" />
         <entry key="$PROJECT_DIR$" value="RE_IMPORT" />
@@ -484,8 +484,8 @@
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="952" />
-    <option name="width" value="977" />
+    <option name="x" value="951" />
+    <option name="width" value="978" />
     <option name="height" value="1038" />
   </component>
   <component name="ProjectView">
@@ -528,6 +528,8 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
     <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1549821897788" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.0" />

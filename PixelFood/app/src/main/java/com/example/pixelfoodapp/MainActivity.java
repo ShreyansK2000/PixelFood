@@ -1,4 +1,5 @@
 package com.example.pixelfoodapp;
+package
 
 import android.Manifest;
 import android.content.Intent;
@@ -8,6 +9,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Camera;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
@@ -22,6 +24,7 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import java.io.BufferedReader;
+import java.io.ByteArrayOutputStream;
 import java.io.DataOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
@@ -30,10 +33,13 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
+import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
@@ -42,13 +48,16 @@ import net.gotev.uploadservice.MultipartUploadRequest;
 import net.gotev.uploadservice.UploadNotificationConfig;
 import com.loopj.android.http.*;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import cz.msebera.android.httpclient.HttpEntity;
 import cz.msebera.android.httpclient.HttpResponse;
 import cz.msebera.android.httpclient.client.HttpClient;
 import cz.msebera.android.httpclient.client.methods.HttpPost;
 import cz.msebera.android.httpclient.entity.InputStreamEntity;
 import cz.msebera.android.httpclient.impl.client.DefaultHttpClient;
-
-
+import cz.msebera.android.httpclient.util.EntityUtils;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -109,15 +118,11 @@ public class MainActivity extends AppCompatActivity {
             File pictureDirectory = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES);
 
             String currentDateAndTime = getCurrentDateAndTime();
-            File imFile = new File(pictureDirectory, NameOfFile + currentDateAndTime + ".jpg");
-
-            if(!imFile.exists()){
-                imFile.mkdir();
-            }
+            File imFile = new File(pictureDirectory, NameOfFile + currentDateAndTime + ".png");
 
             try{
                 OutputStream out = new FileOutputStream(imFile);
-                bitmapIm.compress(Bitmap.CompressFormat.JPEG,100,out);
+                bitmapIm.compress(Bitmap.CompressFormat.PNG,100,out);
                 out.flush();
                 out.close();
             } catch (java.io.IOException e){
@@ -129,15 +134,20 @@ public class MainActivity extends AppCompatActivity {
 
         if (requestCode == Upload_Request_Code){
             filePath = data.getData();
+            JSONObject jsonObj = new JSONObject();
             try {
                 Bitmap chosenImage = MediaStore.Images.Media.getBitmap(getContentResolver(), filePath);
                 imageView.setImageBitmap(chosenImage);
 
-            } catch (IOException e) {
+                String encodedImage = getStringFromBitmap(chosenImage);
+                jsonObj = new JSONObject("{\"image\":\" + encodedImage + \"}");
+
+            } catch (Exception e) {
                 e.printStackTrace();
             }
-
-            uploadImage(filePath);
+            //SendData send = new SendData();
+            //send.onPostExecute();
+           // executeWrite(Upload_URL, jsonObj);
         }
     }
 
@@ -258,56 +268,100 @@ public class MainActivity extends AppCompatActivity {
         startActivity(showDataScreenIntent);
     }
 
-/*
-    /**
-     * Demonstrates using the AutoML client to predict an image.
-     *
-     * @param projectId the Id of the project.
-     * @param computeRegion the Region name.
-     * @param modelId the Id of the model which will be used for text classification.
-     * @param filePath the Local text file path of the content to be classified.
-     * @param scoreThreshold the Confidence score. Only classifications with confidence score above
-     *     scoreThreshold are displayed.
-     * @throws IOException on Input/Output errors.
-     *
-    public static void predict(
-            String projectId,
-            String computeRegion,
-            String modelId,
-            String filePath,
-            String scoreThreshold)
-            throws IOException {
+    private String getStringFromBitmap(Bitmap bitmapPicture) {
+        /*
+         * This functions converts Bitmap picture to a string which can be
+         * JSONified.
+         * */
+        final int COMPRESSION_QUALITY = 100;
+        String encodedImage;
+        ByteArrayOutputStream byteArrayBitmapStream = new ByteArrayOutputStream();
+        bitmapPicture.compress(Bitmap.CompressFormat.PNG, COMPRESSION_QUALITY,
+                byteArrayBitmapStream);
+        byte[] b = byteArrayBitmapStream.toByteArray();
+        encodedImage = Base64.encodeToString(b, Base64.DEFAULT);
+        return encodedImage;
+    }
+    /*
+    public void executeWrite(String requestUrl, JSONObject jsonObject)
+    {
+        InputStreamReader  input = null;
+        try
+        {
+            URL                 url;
+            HttpURLConnection urlConn;
+            DataOutputStream printout;
 
-        project_id = 'pixelfood';
-        compute_region = 'us-central1';
-        model_id = 'ICN4832559605394156485';
-        score_threshold = '0.7';
-        key = 'pixelfood-e2b93b66a82f.json';
+            System.out.println(requestUrl);
+            // URL of CGI-Bin script.
+            url = new URL (requestUrl);
+            // URL connection channel.
+            urlConn = (HttpURLConnection)url.openConnection();
+            // Let the run-time system (RTS) know that we want input.
+            urlConn.setDoInput (true);
+            // Let the RTS know that we want to do output.
+            urlConn.setDoOutput (true);
+            // No caching, we want the real thing.
+            urlConn.setUseCaches (false);
+            // Specify the content type.
+            urlConn.setRequestMethod("POST");
+            urlConn.setRequestProperty("content-type","application/json; charset=utf-8");
 
-        // Instantiate client for prediction service.
-        PredictionServiceClient predictionClient = PredictionServiceClient.create();
+            OutputStreamWriter wr = new OutputStreamWriter(urlConn.getOutputStream());
+            wr.write(jsonObject.toString());
+            wr.flush();
+            wr.close();
 
-        // Get the full path of the model.
-        ModelName name = ModelName.of(projectId, computeRegion, modelId);
+            input = new InputStreamReader (urlConn.getInputStream ());
+            String response = UserInterface.read(new BufferedReader(input));
 
-        // Read the image and assign to payload.
-        ByteString content = ByteString.copyFrom(Files.readAllBytes(Paths.get(filePath)));
-        Image image = Image.newBuilder().setImageBytes(content).build();
-        ExamplePayload examplePayload = ExamplePayload.newBuilder().setImage(image).build();
+            if(response.length() > 0)
+            {
+                System.out.println("Response:" + response);
+            }
 
-        // Additional parameters that can be provided for prediction e.g. Score Threshold
-        Map<String, String> params = new HashMap<>();
-        if (scoreThreshold != null) {
-            params.put("score_threshold", scoreThreshold);
+            input.close();
         }
-        // Perform the AutoML Prediction request
-        PredictResponse response = predictionClient.predict(name, examplePayload, params);
-
-        System.out.println("Prediction results:");
-        for (AnnotationPayload annotationPayload : response.getPayloadList()) {
-            System.out.println("Predicted class name :" + annotationPayload.getDisplayName());
-            System.out.println(
-                    "Predicted class score :" + annotationPayload.getClassification().getScore());
+        catch(IOException ex)
+        {
+            ex.printStackTrace();
         }
-    } */
+    }*/
+}
+
+class SendData extends AsyncTask<String, Void, Boolean> {
+    DateFormat dateFormat = new SimpleDateFormat("MMM dd, yyyy HH:mm:ss");
+    Date date = new Date();
+    String datefinal = dateFormat.format(date).toString();
+    String url = "https://192.168.43.98/send/";
+
+
+    @Override
+    protected Boolean doInBackground(String... urls) {
+        try{
+            HttpPost httppost = new HttpPost(url);
+            HttpClient httpclient = new DefaultHttpClient();
+            HttpResponse response = httpclient.execute(httppost);
+
+            // StatusLine stat = response.getStatusLine();
+            int status = response.getStatusLine().getStatusCode();
+
+            if (status == 200) {
+                HttpEntity entity = response.getEntity();
+                String data = EntityUtils.toString(entity);
+
+                JSONObject jsono = new JSONObject(data);
+                return true;
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (JSONException e) {
+
+            e.printStackTrace();
+        }
+        return false;
+    }
+    protected void onPostExecute(Boolean result) {
+
+    }
 }
