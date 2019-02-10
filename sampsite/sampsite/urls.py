@@ -16,14 +16,11 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
-from sampsite.views import hello_world, root_page, random_number
+from sampsite.views import hello_world, root_page, random_number, imageProcessing, foodFacts
 
 from django.urls import include
 
 urlpatterns = [
-    path('helloworld/', hello_world),
-    path('', root_page),
-    path('admin/', admin.site.urls),
-    path('random/<int:max_rand>/', random_number),
-    path('polls/', include('polls.urls')),
+    path('food/', imageProcessing),
+    path('json/', foodFacts),
 ]

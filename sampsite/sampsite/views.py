@@ -1,51 +1,41 @@
 from django.http import HttpResponse
 import requests
-from pprint import pprint
+#from pprint import pprint
 import json
+import urllib2
+import simplejson
 
 #from PIL import Image
 
-import random
 
-def hello_world(request):
-    return HttpResponse("Hello World")
-
-def root_page(request):
-    print("++++++++++++++++++++++++++++++++++")
-    print('Root_Page')
-    print("++++++++++++++++++++++++++++++++++")
-    return HttpResponse("Root Home Page")
-
-def random_number(request, max_rand=100):
-    random_number = random.randrange(0, int(max_rand))
-
-    msg = "Random Number Between 0 and %s : %d" %(max_rand, random_number)
-    print("++++++++++++++++++++++++++++++++++")
-    print(random_number)
-    print("++++++++++++++++++++++++++++++++++")
-    return HttpResponse(msg)
-
-def imageProcessing(image):
-    return "apple"
+def imageProcessing(request):
+    return HttpResponse("apple")
 
 
-def foodFacts(name_of_food):
-    foodID = {}
+def foodFacts(request):
+    #foodID = {}
+    response = urllib2.urlopen("http://172.0.0.1:8000/custom/get/")
+    data = simplejson.load(response)
+
     url = "https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/guessNutrition?title="
-    name_of_food = "+".join(name_of_food.split())
+    name_of_food = "pizza" #"+".join(name_of_food.split())
     url = url + name_of_food
 
     # print(url)
 
-    nutritionData = requests.get(url, headers={"X-RapidAPI-Key": ""})
+    nutritionData = requests.get(url, headers={"X-RapidAPI-Key": "55564aab52msh6f13532902474b5p1fd958jsn58bfff5d2ece"})
 
-    return nutritionData.json()
+    return HttpResponse(str(nutritionData.json()))
 
 
-def foodDetection(request,image):
-    #preprocess the image
-    foodName = imageProcessing(image)
-    jsonResponse = foodFacts(foodName)
+def getAllergenInfo(ID):
+    url = "https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/" + str(ID) + "/information"
+    allergenData = requests.get(url, headers={"X-RapidAPI-Key": "55564aab52msh6f13532902474b5p1fd958jsn58bfff5d2ece"})
+
+    with open('allergenFile.json', 'w') as outfile:
+        json.dump(allergenData.json(), outfile, indent=4)
+
+    return HttpResponse(str(allergenData.json()))
 
 
 
