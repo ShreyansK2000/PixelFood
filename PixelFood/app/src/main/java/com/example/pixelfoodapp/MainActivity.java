@@ -48,6 +48,11 @@ import cz.msebera.android.httpclient.impl.client.DefaultHttpClient;
 
 public class MainActivity extends AppCompatActivity {
 
+    int Camera_Request_Code = 7;
+    int Upload_Request_Code = 77;
+    int WRITE_Request_Code = 1;
+    int READ_Request_Code = 2;
+
     ImageView imageView;
     private static final String Upload_URL = "http://192.168.43.98/";
     private Uri filePath;
@@ -57,30 +62,33 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        ActivityCompat.requestPermissions(MainActivity.this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},1);
-        requestStoragePermission();
-        //ActivityCompat.requestPermissions(MainActivity.this, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},2);
+        ActivityCompat.requestPermissions(MainActivity.this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},WRITE_Request_Code);
+        ActivityCompat.requestPermissions(MainActivity.this, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},READ_Request_Code);
+
         final Button btnCamera = (Button)findViewById(R.id.btnCamera);
         final Button btnUpload = (Button)findViewById(R.id.btnUpload);
         final Button btnSeeAnalysis = (Button)findViewById(R.id.btnSeeData);
-        btnSeeAnalysis.setEnabled(false);
         imageView = (ImageView)findViewById(R.id.imageView);
+
+        btnSeeAnalysis.setEnabled(false);
 
         btnCamera.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                startActivityForResult(intent,0);
+                Intent intentCam = new Intent("android.media.action.IMAGE_CAPTURE");
+                startActivityForResult(intentCam, Camera_Request_Code );
             }
         });
 
         btnUpload.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent();
-                intent.setType("image/*");
-                intent.setAction(Intent.ACTION_GET_CONTENT);
-                startActivityForResult(Intent.createChooser(intent, "Select Picture"), 3);
+
+                Intent intentUpload = new Intent();
+                intentUpload.setType("image/*");
+                intentUpload.setAction(Intent.ACTION_GET_CONTENT);
+                startActivityForResult(Intent.createChooser(intentUpload, "Select Picture"), Upload_Request_Code);
+
                 btnSeeAnalysis.setEnabled(true);
             }
         });
@@ -88,84 +96,51 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data){
-        if(requestCode == 0){
+        if(requestCode == Camera_Request_Code && resultCode == RESULT_OK){
             super.onActivityResult(requestCode, resultCode, data);
-            // Bitmap bitmap = (Bitmap)data.getExtras().get("data");
-            Bundle bundle = data.getExtras();
-            Bitmap bitmap = (Bitmap) bundle.get("data");
+            Bitmap bitmapIm = (Bitmap)data.getExtras().get("data");
 
-
-            // String NameOfFolder = "FoodPixel";
             String NameOfFile = "FoodPixelFood";
-            //String file_path = Environment.getExternalStorageDirectory().getAbsolutePath()+NameOfFolder;
             File pictureDirectory = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES);
+
             String currentDateAndTime = getCurrentDateAndTime();
-            //File directory = new File(file_path);
+            File imFile = new File(pictureDirectory, NameOfFile + currentDateAndTime + ".jpg");
 
-//                if(!directory.exists()){
-//                    directory.mkdirs();
-//                }
-
-            File imFile = new File(pictureDirectory, NameOfFile + currentDateAndTime + ".png");
-
-            Uri pictureUri = Uri.fromFile(imFile);
-            // intent.putExtra(MediaStore.EXTRA_OUTPUT, pictureUri);
-
-            OutputStream out = null;
+            if(!imFile.exists()){
+                imFile.mkdir();
+            }
 
             try{
-                out = new FileOutputStream(imFile);
-                bitmap.compress(Bitmap.CompressFormat.PNG,100,out);
+                OutputStream out = new FileOutputStream(imFile);
+                bitmapIm.compress(Bitmap.CompressFormat.JPEG,100,out);
                 out.flush();
                 out.close();
             } catch (java.io.IOException e){
                 e.printStackTrace();
             }
-
-//            try {
-//                HttpClient httpclient = new DefaultHttpClient();
-//
-//                HttpPost httppost = new HttpPost(Upload_URL);
-//
-//                InputStreamEntity reqEntity = new InputStreamEntity(
-//                        new FileInputStream(imFile), -1);
-//                reqEntity.setContentType("binary/octet-stream");
-//                reqEntity.setChunked(true); // Send in multiple parts if needed
-//                httppost.setEntity(reqEntity);
-//                //HttpResponse response = httpclient.execute(httppost);
-//                //Do something with response...
-//
-//            } catch (Exception e) {
-//                // show error
-//            }
-
-            imageView.setImageBitmap(bitmap);
+            imageView.setImageBitmap(bitmapIm);
 
         }
 
-        else if (requestCode == 3){
+        if (requestCode == Upload_Request_Code){
             filePath = data.getData();
             try {
-                Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), filePath);
-                imageView.setImageBitmap(bitmap);
+                Bitmap chosenImage = MediaStore.Images.Media.getBitmap(getContentResolver(), filePath);
+                imageView.setImageBitmap(chosenImage);
 
             } catch (IOException e) {
                 e.printStackTrace();
             }
 
             uploadImage(filePath);
-           // Bitmap bitmap = Bitmap.createBitmap(10, 10, Bitmap.Config.ARGB_8888);
-            //imageView.setImageBitmap(bitmap);
         }
-
-
     }
 
     private String getCurrentDateAndTime(){
-        Calendar c = Calendar.getInstance();
-        SimpleDateFormat s = new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss");
-        String formattedDate = s.format(c.getTime());
-        return formattedDate;
+        Calendar cal = Calendar.getInstance();
+        SimpleDateFormat date = new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss");
+        String formatDate = date.format(cal.getTime());
+        return formatDate;
     }
 
     private String getPath(Uri uri){
@@ -180,19 +155,6 @@ public class MainActivity extends AppCompatActivity {
         String path = cursor.getString(cursor.getColumnIndex(MediaStore.Images.Media.DATA));
         cursor.close();
         return path;
-    }
-
-    private void requestStoragePermission() {
-        if (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED)
-            return;
-
-        if (ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.READ_EXTERNAL_STORAGE)) {
-            //If the user has denied the permission previously your code will come to this block
-            //Here you can explain why you need this permission
-            //Explain here why you need this permission
-        }
-        //And finally ask for the permission
-        ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, 123);
     }
 
 
