@@ -1,6 +1,8 @@
 import org.json.simple.JSONObject;
 import org.json.simple.JSONArray;
 import java.io.FileReader;
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 import java.util.HashMap;
 import org.json.simple.parser.JSONParser;
 
@@ -37,31 +39,36 @@ public class jsonReader {
             double proteinMax = proteinRangeMap.get("max");
             System.out.println();
 
+            System.out.println("Nutrient      " + "Calories (Range)\nCarbohydrate: " + carbCount + " (" + carbMin + "-" + carbMax + ") \nFat:          " + fatCount + " (" + fatMin + "-" + fatMax + ") \nProteins:     " + proteinCount + " (" + proteinMin + "-" + proteinMax + ") \nTotal:        " + calorieCount + " (" + minVal + "-" + maxVal + ") ");
 
-//            System.out.println(jsonObject);
-//            System.out.println(carbMap);
-//            System.out.println(fatMap);
-//            System.out.println(proteinMap);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
-            System.out.println("Calories count: " + calorieCount);
-            System.out.println("Minimum calories: " + minVal);
-            System.out.println("Maximum calories: " + maxVal);
-            System.out.println();
+        //////////////////////////////////////
 
-            System.out.println("Carb calories count: " + carbCount);
-            System.out.println("Carb Minimum calories: " + carbMin);
-            System.out.println("Carb Maximum calories: " + carbMax);
-            System.out.println();
+        try{
+            Object obj = parser.parse(new FileReader("d:\\xdHacks PixelFood\\allergenFile.json"));
+            JSONObject allergenObj = (JSONObject) obj;
 
-            System.out.println("Fat calories count: " + fatCount);
-            System.out.println("Fat Minimum calories: " + fatMin);
-            System.out.println("Fat Maximum calories: " + fatMax);
-            System.out.println();
+            boolean vegetarian = (boolean) allergenObj.get("vegetarian");
+            boolean vegan = (boolean) allergenObj.get("vegan");
+            boolean glutenFree = (boolean) allergenObj.get("glutenFree");
+            boolean dairyFree = (boolean) allergenObj.get("dairyFree");
+            boolean veryHealthy = (boolean) allergenObj.get("veryHealthy");
+            boolean cheap = (boolean) allergenObj.get("cheap");
+            boolean veryPopular = (boolean) allergenObj.get("veryPopular");
+            boolean ketogenic = (boolean) allergenObj.get("ketogenic");
+            boolean whole30 = (boolean) allergenObj.get("whole30");
+            boolean lowFodmap = (boolean) allergenObj.get("lowFodmap");
 
-            System.out.println("Proteins calories count: " + proteinCount);
-            System.out.println("Proteins Minimum calories: " + proteinMin);
-            System.out.println("Proteins Maximum calories: " + proteinMax);
-            System.out.println();
+            ArrayList<HashMap<String, Object>> mapList = (ArrayList<HashMap<String, Object>>) allergenObj.get("extendedIngredients");
+            ArrayList<String> ingredients= new ArrayList<String>();
+            for(HashMap<String, Object> map : mapList){
+                ingredients.add((String) map.get("name"));
+            }
+
+            System.out.println(ingredients);
 
         } catch (Exception e) {
             e.printStackTrace();
