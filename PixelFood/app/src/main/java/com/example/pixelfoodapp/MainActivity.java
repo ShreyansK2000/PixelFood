@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Camera;
 import android.net.Uri;
 import android.os.Environment;
@@ -20,22 +21,35 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import java.io.BufferedReader;
+import java.io.DataOutputStream;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.io.OutputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.UUID;
 
 import net.gotev.uploadservice.MultipartUploadRequest;
 import net.gotev.uploadservice.UploadNotificationConfig;
+import com.loopj.android.http.*;
 
+import cz.msebera.android.httpclient.HttpResponse;
+import cz.msebera.android.httpclient.client.HttpClient;
+import cz.msebera.android.httpclient.client.methods.HttpPost;
+import cz.msebera.android.httpclient.entity.InputStreamEntity;
+import cz.msebera.android.httpclient.impl.client.DefaultHttpClient;
 
 public class MainActivity extends AppCompatActivity {
 
     ImageView imageView;
-    private static final String Upload_URL = "http://127.0.0.1:8000/";
+    private static final String Upload_URL = "http://192.168.43.98/";
     private Uri filePath;
 
     @Override
@@ -46,8 +60,10 @@ public class MainActivity extends AppCompatActivity {
         ActivityCompat.requestPermissions(MainActivity.this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},1);
         requestStoragePermission();
         //ActivityCompat.requestPermissions(MainActivity.this, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},2);
-        Button btnCamera = (Button)findViewById(R.id.btnCamera);
-        Button btnUpload = (Button)findViewById(R.id.btnUpload);
+        final Button btnCamera = (Button)findViewById(R.id.btnCamera);
+        final Button btnUpload = (Button)findViewById(R.id.btnUpload);
+        final Button btnSeeAnalysis = (Button)findViewById(R.id.btnSeeData);
+        btnSeeAnalysis.setEnabled(false);
         imageView = (ImageView)findViewById(R.id.imageView);
 
         btnCamera.setOnClickListener(new View.OnClickListener() {
@@ -60,11 +76,12 @@ public class MainActivity extends AppCompatActivity {
 
         btnUpload.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(View view) {
                 Intent intent = new Intent();
                 intent.setType("image/*");
                 intent.setAction(Intent.ACTION_GET_CONTENT);
                 startActivityForResult(Intent.createChooser(intent, "Select Picture"), 3);
+                btnSeeAnalysis.setEnabled(true);
             }
         });
     }
@@ -104,12 +121,29 @@ public class MainActivity extends AppCompatActivity {
             } catch (java.io.IOException e){
                 e.printStackTrace();
             }
+
+//            try {
+//                HttpClient httpclient = new DefaultHttpClient();
+//
+//                HttpPost httppost = new HttpPost(Upload_URL);
+//
+//                InputStreamEntity reqEntity = new InputStreamEntity(
+//                        new FileInputStream(imFile), -1);
+//                reqEntity.setContentType("binary/octet-stream");
+//                reqEntity.setChunked(true); // Send in multiple parts if needed
+//                httppost.setEntity(reqEntity);
+//                //HttpResponse response = httpclient.execute(httppost);
+//                //Do something with response...
+//
+//            } catch (Exception e) {
+//                // show error
+//            }
+
             imageView.setImageBitmap(bitmap);
 
         }
 
         else if (requestCode == 3){
-            System.out.print("Wei");
             filePath = data.getData();
             try {
                 Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), filePath);
@@ -118,7 +152,10 @@ public class MainActivity extends AppCompatActivity {
             } catch (IOException e) {
                 e.printStackTrace();
             }
-           // uploadImage(filePath);
+
+            uploadImage(filePath);
+           // Bitmap bitmap = Bitmap.createBitmap(10, 10, Bitmap.Config.ARGB_8888);
+            //imageView.setImageBitmap(bitmap);
         }
 
 
@@ -178,25 +215,79 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void uploadImage(Uri filePath){
-        String name = "Ni Hao";
+        String name = "upload image";
         String path = getPath(filePath);
 
+        //HttpURLConnection connection = null;
+        String urlParameters = "1000";
+        System.out.println("Before");
         try {
-            String uploadId = UUID.randomUUID().toString();
 
-            //Creating a multi part request
-            new MultipartUploadRequest(this, uploadId, Upload_URL)
-                    .addFileToUpload(path, "image") //Adding file
-                    .addParameter("name", name) //Adding text parameter to the request
-                    .setNotificationConfig(new UploadNotificationConfig())
-                    .setMaxRetries(2)
-                    .startUpload(); //Starting the upload
-
-        } catch (Exception exc) {
-            Toast.makeText(this, exc.getMessage(), Toast.LENGTH_SHORT).show();
+            System.out.println("Before");
+            URL url = new URL(Upload_URL);
+            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+            //connection.setRequestMethod("POST");
+            //connection.setRequestProperty("Content-Type" "application/x-www-form-urlencoded");
+            connection.setRequestMethod("GET");
+            System.out.println(connection.getPermission());
+            //connection.setDoOutput(true);
+            //connection.setConnectTimeout(5000);
+            //connection.setReadTimeout(5000);
+            //connection.connect();
+            //BufferedReader rd = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+            //String content = "", line;
+//            while ((line = rd.readLine()) != null) {
+//                content += line + "\n";
+//            }
+            //HttpURLConnection con = (HttpURLConnection) url.openConnection();
+            //con.setRequestMethod("GET");
+           // int responsecode = connection.getResponseCode();
+            //System.out.println(responsecode);
+            System.out.println("Apres");
+//            connection = (HttpURLConnection) url.openConnection();
+//            connection.setRequestMethod("POST");
+//            connection.setRequestProperty("Content-Type",
+//                    "application/x-www-form-urlencoded");
+//
+//            connection.setRequestProperty("Content-Length",
+//                    Integer.toString(urlParameters.getBytes().length));
+//            connection.setRequestProperty("Content-Language", "en-US");
+//
+//            connection.setUseCaches(false);
+//            connection.setDoOutput(true);
+//
+//            //Send request
+//            DataOutputStream wr = new DataOutputStream (
+//                    connection.getOutputStream());
+//            wr.writeBytes(urlParameters);
+//            wr.close();
+//
+//            //Get Response
+//            InputStream is = connection.getInputStream();
+//            BufferedReader rd = new BufferedReader(new InputStreamReader(is));
+//            StringBuilder response = new StringBuilder(); // or StringBuffer if Java version 5+
+//            //response.append("Hi");
+//            String line;
+//            while ((line = rd.readLine()) != null) {
+//                response.append(line);
+//                response.append('\r');
+//            }
+//            rd.close();
+//            //return response.toString();
+        } catch (Exception e) {
+            e.printStackTrace();
+            //return null;
         }
-
-
+//        finally {
+//            if (connection != null) {
+//                connection.disconnect();
+//            }
+//        }
     }
 
+    public void onClickData(View view) {
+        Intent showDataScreenIntent = new Intent(this, SecondScreen.class);
+        showDataScreenIntent.putExtra("Data", "Blah for now");
+        startActivity(showDataScreenIntent);
     }
+}

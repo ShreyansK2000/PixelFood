@@ -10,7 +10,7 @@
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_weight="8"
+        android:layout_weight="10"
         android:layout_width="match_parent"
         android:layout_height="fill_parent" />
     <Button
@@ -25,5 +25,15 @@
         android:layout_weight="1"
         android:layout_height="wrap_content"
         android:layout_width="match_parent"
-        android:text="Upload" />
+        android:text="@string/upload_id" />
+
+    <Button
+        android:id="@+id/btnSeeData"
+        android:layout_weight="1"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:text="@string/see_analysis_id"
+        android:onClick= "onClickData"/>
+
+
 </LinearLayout>
