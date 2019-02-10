@@ -1,3 +1,5 @@
+from google.cloud import 
+
 class MyName:
 	def __init__(self, *args, **kwargs):
 		print('initialized')
@@ -8,3 +10,4 @@ class MyName:
 
 gui = MyName()
 gui.printStuff()
+
