@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">PixelFoodApp</string>
+    <string name="open_camera__id">Open Camera</string>
+</resources>
