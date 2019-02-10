@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "pixelfood",
+  "private_key_id": "e2b93b66a82f6ff2067f659214e0dd036ddd027d",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvAIBADANBgkqhkiG9w0BAQEFAASCBKYwggSiAgEAAoIBAQDg8kCFd2rEoFzl\ni92ro7nPhOrwxbG6SnnJAk/2nN4fEpSGPDNFGa7zsdP3vLSdhNZC5HwbyRqeuO72\na/c1v9NWwfrGfNAMtckfVXd7ra++PDEcmWuEehrz3aqZfEvXvpDPolYZEgGqyWzU\nFkvhWzTfolOJPn5QKihkncAZaJXLwDWwuFm1LMJLDPfsAklEQBN0D/84AUoOk7AE\ngyCL4Lzg65H9NwoAs6nRBKxj/GMJjRu3dknfwWoIdytjDShC5LyB6rs530GNkN/S\nqnrsqjgCJWLyi3RIXZrj5S90ywyl2PhJVUrDmXSzbMKWlRTGSX9I6hPZ90J7RvCX\n995EpKTXAgMBAAECggEAJquuyOMLIUtaPQIK9R9b6Z91jjfGQnrcLeCuY3x7OQdG\nLj96JuZv66gGAyBXQn8cIHrMFTDA2Ul8lzNfV8em6tLFLEs3rv+vWComtMXaoQ8S\n+FItqCQfrw3L7r/t/+RcW72SJJQyYixnf5xnphG6aLmst7rdFyXwNL/jztpqahDJ\n7Mxm4sH3U4pvTWOXORR5k+BY8caAjHuiOJp+6DjNaz+sw1Wp/ampk0iswz6lEieA\nl3O6UB9D/Gx3q53GpkktM7jluqLNU9EeuPkvu5XY8HvrY4ENA0lmL0nnBzYnfmJH\nnEzIr/I4kEnE0TrwNMF+LkYn3TKA1v51yQRycGVU+QKBgQD8cxo+gL0nXBf/e+PD\nya5LIIlKxNRZH3GqnR02iIV9uI/Wq5byZ1jLdUp1M4YYQbm9f+0rfFV+P4z9D8hS\nKUvVz5eNToxp/eAgj2G7IwY6bZq9wPk8XlHmpCWEjUPjGfGU64a4YKu8IqqRxQ2u\nRygDkJIh0GlA0UpLLwTuCkt2aQKBgQDkHCEEJkWipcBWhfr+HluwTQeCiakQuQzC\nhAAeR9kLjebe+y4n0LbU1sM5UM8snxJZNS02bpCmKNxF10N3ij8mDGeqISnIpx5E\ncnI8OyuedRvMO28Zz5xDeW1Wd0x6O3YBHRuWz+I++oXiLUaEvEh8yC9E/+DIYZ8D\nSZB2E6hZPwKBgAvOckbEDJSfqPuo1qEceItI7ULS679zSgSZrnkTb3LOw+NdSQTz\nMmLpjF7o1vehc0daiUQEX5c076oSJ+M3zTUlrUfNiaGXXvkG26I95BetcpQ3RzC8\nlIX93UdSt/8SAotdbIKI+t8km+ePWLFy4HsyMrNkJNgEMb5MZ6WeU6MpAoGAJGr1\nPnNZxLjPt0CWrMFuA/yYSVfu/PN+PQPT/QGdfkG+bTUOzl59AgfzjRAAs3AF/uYF\nfN40C8MUP7Y5WDljEZEDb97xi85af7UB1engceDiej225BkIKqGVOiu7svwRP+ZE\nxFQWG9XlUBHIY2Kn8/wFx+9OFM+5Ek5JWQCUbQMCgYA5eurNK0pdKqP8DAIdLX/H\nIMfgnCZUAMyLi2CLj6f8PHfd0UN9BIPAho/NAw/H6JW4wRuOHC1P4fv6VxwIiXDl\n4tx8xbEw/aKcKZYvO43KFwX9h0M7gc6QWj/vcsC0KR1XwJTBjOwkxLy+HjqWwWVN\ngaTTO+6LP6HVXcNzH1TlQA==\n-----END PRIVATE KEY-----\n",
+  "client_email": "partialtraining@pixelfood.iam.gserviceaccount.com",
+  "client_id": "116893422349608651760",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/partialtraining%40pixelfood.iam.gserviceaccount.com"
+}
