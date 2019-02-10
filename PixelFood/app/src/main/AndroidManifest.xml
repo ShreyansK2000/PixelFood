@@ -25,9 +25,13 @@
             </intent-filter>
         </activity>
         <activity android:name=".SecondScreen"
+        android:label="Show Data"
+        android:theme="@style/AppTheme" />
+
+        <activity android:name=".ThirdScreen"
             android:label="Show Data"
             android:theme="@style/AppTheme" />
-        
+
     </application>
 
 </manifest>

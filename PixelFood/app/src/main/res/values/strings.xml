@@ -5,4 +5,7 @@
     <string name="nutrition_conent_id">Blah</string>
     <string name="return_id">Return</string>
     <string name="see_analysis_id">See Analysis</string>
+    <string name="caloriesid">Calories</string>
+    <string name="Dietary_Preference_id">Dietary Preference</string>
+    <string name="ingredientsio">Ingredients</string>
 </resources>

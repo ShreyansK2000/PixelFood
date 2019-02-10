@@ -34,6 +34,8 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.UUID;
 
 import net.gotev.uploadservice.MultipartUploadRequest;
@@ -45,6 +47,9 @@ import cz.msebera.android.httpclient.client.HttpClient;
 import cz.msebera.android.httpclient.client.methods.HttpPost;
 import cz.msebera.android.httpclient.entity.InputStreamEntity;
 import cz.msebera.android.httpclient.impl.client.DefaultHttpClient;
+
+
+
 
 public class MainActivity extends AppCompatActivity {
 
@@ -203,7 +208,7 @@ public class MainActivity extends AppCompatActivity {
 //            }
             //HttpURLConnection con = (HttpURLConnection) url.openConnection();
             //con.setRequestMethod("GET");
-           // int responsecode = connection.getResponseCode();
+           int responsecode = connection.getResponseCode();
             //System.out.println(responsecode);
             System.out.println("Apres");
 //            connection = (HttpURLConnection) url.openConnection();
@@ -249,7 +254,60 @@ public class MainActivity extends AppCompatActivity {
 
     public void onClickData(View view) {
         Intent showDataScreenIntent = new Intent(this, SecondScreen.class);
-        showDataScreenIntent.putExtra("Data", "Blah for now");
+        showDataScreenIntent.putExtra("Data", "Blah for now @ Blah 2 for now @ blah 3 for now");
         startActivity(showDataScreenIntent);
     }
+
+/*
+    /**
+     * Demonstrates using the AutoML client to predict an image.
+     *
+     * @param projectId the Id of the project.
+     * @param computeRegion the Region name.
+     * @param modelId the Id of the model which will be used for text classification.
+     * @param filePath the Local text file path of the content to be classified.
+     * @param scoreThreshold the Confidence score. Only classifications with confidence score above
+     *     scoreThreshold are displayed.
+     * @throws IOException on Input/Output errors.
+     *
+    public static void predict(
+            String projectId,
+            String computeRegion,
+            String modelId,
+            String filePath,
+            String scoreThreshold)
+            throws IOException {
+
+        project_id = 'pixelfood';
+        compute_region = 'us-central1';
+        model_id = 'ICN4832559605394156485';
+        score_threshold = '0.7';
+        key = 'pixelfood-e2b93b66a82f.json';
+
+        // Instantiate client for prediction service.
+        PredictionServiceClient predictionClient = PredictionServiceClient.create();
+
+        // Get the full path of the model.
+        ModelName name = ModelName.of(projectId, computeRegion, modelId);
+
+        // Read the image and assign to payload.
+        ByteString content = ByteString.copyFrom(Files.readAllBytes(Paths.get(filePath)));
+        Image image = Image.newBuilder().setImageBytes(content).build();
+        ExamplePayload examplePayload = ExamplePayload.newBuilder().setImage(image).build();
+
+        // Additional parameters that can be provided for prediction e.g. Score Threshold
+        Map<String, String> params = new HashMap<>();
+        if (scoreThreshold != null) {
+            params.put("score_threshold", scoreThreshold);
+        }
+        // Perform the AutoML Prediction request
+        PredictResponse response = predictionClient.predict(name, examplePayload, params);
+
+        System.out.println("Prediction results:");
+        for (AnnotationPayload annotationPayload : response.getPayloadList()) {
+            System.out.println("Predicted class name :" + annotationPayload.getDisplayName());
+            System.out.println(
+                    "Predicted class score :" + annotationPayload.getClassification().getScore());
+        }
+    } */
 }
